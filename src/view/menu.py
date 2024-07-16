@@ -1,22 +1,15 @@
 import tkinter as tk
+from data_interface.schedule import post_data, get_data
 
-def abrir_arquivo():
-    print("Abrir arquivo")
-
-def salvar_arquivo():
-    print("Salvar arquivo")
 
 def criar_menu(root):
+
     menubar = tk.Menu(root)
 
-    # Menu Arquivo
-    menu_arquivo = tk.Menu(menubar, tearoff=0)
-    menu_arquivo.add_command(label="Abrir", command=abrir_arquivo)
-    menu_arquivo.add_command(label="Salvar", command=salvar_arquivo)
-    menu_arquivo.add_separator()
-    menu_arquivo.add_command(label="Sair", command=root.quit)
-
-    menubar.add_cascade(label="Arquivo", menu=menu_arquivo)
+    menubar.add_command(label="Agenda", command=get_data)
+    menubar.add_command(label="Novo agendamento", command=post_data)
 
     # Adicionar a barra de menus à janela principal
     root.config(menu=menubar)
+
+    return menubar
