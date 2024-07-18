@@ -22,9 +22,6 @@ def criar_tree(root):
     tree.tag_configure('oddrow', background='white')
     tree.tag_configure('evenrow', background='#eee')
 
-    # Empacotamento do Treeview
-    tree.pack(fill=tk.BOTH, expand=True)
-
     # Inserindo dados de exemplo
     dados = [
         ("01/01/2024", "10:00", "Cliente A", "manutenção"),
@@ -41,3 +38,10 @@ def criar_tree(root):
             tree.insert("", tk.END, values=dado, tags=('oddrow'))
 
     return tree
+
+
+def remover_tree(tree):
+    tree.pack_forget()
+
+
+# Fazer tree e footer sumir quando clicar em Novo agendamento para aparecer os inputs.
