@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter import messagebox
+from data_interface.schedule import get_data
 
 
 def criar_tree(root):
@@ -22,22 +22,24 @@ def criar_tree(root):
     tree.tag_configure('oddrow', background='white')
     tree.tag_configure('evenrow', background='#eee')
 
-    # Inserindo dados de exemplo
-    dados = [
-        ("01/01/2024", "10:00", "Cliente A", "manutenção"),
-        ("02/01/2024", "11:00", "Cliente B", "manutenção"),
-        ("03/01/2024", "12:00", "Cliente C", "manutenção"),
-        ("04/01/2024", "13:00", "Cliente D", "manutenção"),
-        ("05/01/2024", "14:00", "Cliente E", "manutenção")
-    ]
-
-    for index, dado in enumerate(dados):
-        if index % 2 == 0:
-            tree.insert("", tk.END, values=dado, tags=('evenrow'))
-        else:
-            tree.insert("", tk.END, values=dado, tags=('oddrow'))
+    fill_data(tree)
 
     return tree
+
+
+def fill_data(tree):
+
+    for item in tree.get_children():
+        tree.delete(item)
+
+    dados = get_data()
+    for index, dado in enumerate(dados):
+        if index % 2 == 0:
+            tree.insert("", tk.END, values=(
+                dado[3], dado[4], dado[1], dado[2]), tags=('evenrow'))
+        else:
+            tree.insert("", tk.END, values=(
+                dado[3], dado[4], dado[1], dado[2]), tags=('oddrow'))
 
 
 def remover_tree(tree):

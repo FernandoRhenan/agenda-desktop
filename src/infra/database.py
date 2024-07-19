@@ -5,14 +5,14 @@ def initDatabase():
     with sqlite3.connect("./src/infra/agenda_database.db") as connection:
         cursor = connection.cursor()
         cursor.execute(
-            "CREATE TABLE IF NOT EXISTS schedule(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, service TEXT NOT NULL, data NUMERIC NOT NULL);")
+            "CREATE TABLE IF NOT EXISTS schedule(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, service TEXT NOT NULL, data TEXT NOT NULL, time TEXT NOT NULL);")
         connection.commit()
 
 
-def commitQuery(q):
+def commitQuery(q, values):
     with sqlite3.connect("./src/infra/agenda_database.db") as connection:
         cursor = connection.cursor()
-        cursor.execute(q)
+        cursor.execute(q, (values))
         connection.commit()
 
 

@@ -14,10 +14,11 @@ root.title("Agenda")
 root.geometry('390x450')
 
 criar_menu(root)
-criar_header_title(root, "Agendamentos")
+criar_header_title(root, "Agenda")
 tree = criar_tree(root)
 criar_footer(root, tree)
 
+# Alterar agendamento e excluir agendamento
 
 # Loop principal da aplicação
 root.mainloop()

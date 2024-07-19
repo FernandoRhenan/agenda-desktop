@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
+from data_interface.schedule import post_data
+from view.tree import fill_data
 
 
 def criar_form(root, tree, footer):
@@ -31,7 +33,7 @@ def criar_form(root, tree, footer):
     buttons_frame.grid(row=4, columnspan=2, pady=10)
 
     submeter_btn = tk.Button(buttons_frame, text="Agendar", command=lambda: submeter(
-        data_entry, hora_entry, nome_entry, procedimento_entry))
+        data_entry, hora_entry, nome_entry, procedimento_entry, form_frame, tree, footer))
     submeter_btn.pack(side="left", padx=5)
 
     cancelar_btn = tk.Button(
@@ -41,16 +43,25 @@ def criar_form(root, tree, footer):
     return form_frame
 
 
-def submeter(data_entry, hora_entry, nome_entry, procedimento_entry):
+def submeter(data_entry, hora_entry, nome_entry, procedimento_entry, form_frame, tree, footer):
     data = data_entry.get()
-    hora = hora_entry.get()
-    nome = nome_entry.get()
-    procedimento = procedimento_entry.get()
+    time = hora_entry.get()
+    name = nome_entry.get()
+    service = procedimento_entry.get()
 
-    if data and hora and nome and procedimento:
+    if data and time and name and service:
         # Aqui você pode adicionar o código para salvar os dados
-        print(f"Agendamento: {data}, {hora}, {nome}, {procedimento}")
+
+        post_data(name, service, data, time)
+
+        fill_data(tree)
+
         messagebox.showinfo("Sucesso", "Agendamento submetido com sucesso!")
+
+        form_frame.pack_forget()
+        tree.pack(fill=tk.BOTH, expand=True)
+        footer.pack(pady=10)
+
     else:
         messagebox.showwarning("Campos obrigatórios",
                                "Todos os campos devem ser preenchidos.")
