@@ -36,14 +36,11 @@ def fill_data(tree):
     for index, dado in enumerate(dados):
         if index % 2 == 0:
             tree.insert("", tk.END, values=(
-                dado[3], dado[4], dado[1], dado[2]), tags=('evenrow'))
+                dado[2], dado[3], dado[0], dado[1]), tags=('evenrow'))
         else:
             tree.insert("", tk.END, values=(
-                dado[3], dado[4], dado[1], dado[2]), tags=('oddrow'))
+                dado[2], dado[3], dado[0], dado[1]), tags=('oddrow'))
 
 
 def remover_tree(tree):
     tree.pack_forget()
-
-
-# Fazer tree e footer sumir quando clicar em Novo agendamento para aparecer os inputs.

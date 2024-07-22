@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from view.tree import remover_tree
 from view.form import criar_form
+from data_interface.schedule import delete_data
 
 
 def criar_footer(root, tree):
@@ -30,6 +31,9 @@ def excluir_agendamento(tree):
         messagebox.showwarning(
             "Nenhuma seleção", "Selecione um agendamento para excluir")
         return
+    items = tree.item(selected_item[0], "values")
+    delete_data(items[0], items[1])
+
     tree.delete(selected_item)  # Deleta o item selecionado
 
 

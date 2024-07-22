@@ -5,7 +5,7 @@ def initDatabase():
     with sqlite3.connect("./src/infra/agenda_database.db") as connection:
         cursor = connection.cursor()
         cursor.execute(
-            "CREATE TABLE IF NOT EXISTS schedule(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, service TEXT NOT NULL, data TEXT NOT NULL, time TEXT NOT NULL);")
+            "CREATE TABLE IF NOT EXISTS schedule(name TEXT NOT NULL, service TEXT NOT NULL, data TEXT UNIQUE, time TEXT UNIQUE, PRIMARY KEY (data, time));")
         connection.commit()
 
 
