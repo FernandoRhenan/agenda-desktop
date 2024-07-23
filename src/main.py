@@ -18,7 +18,5 @@ criar_header_title(root, "Agenda")
 tree = criar_tree(root)
 criar_footer(root, tree)
 
-# Alterar agendamento e excluir agendamento
-
 # Loop principal da aplicação
 root.mainloop()
